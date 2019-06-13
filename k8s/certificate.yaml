@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: sam-ober-com-tls
+spec:
+  secretName: sam-ober-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: sam-ober.com
+  dnsNames:
+    - sam-ober.com
+    - www.sam-ober.com
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - sam-ober.com
+          - www.sam-ober.com
